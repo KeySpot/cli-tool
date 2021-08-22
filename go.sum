@@ -1,0 +1,4 @@
+github.com/akamensky/argparse v1.3.1 h1:kP6+OyvR0fuBH6UhbE6yh/nskrDEIQgEA1SUXDPjx4g=
+github.com/akamensky/argparse v1.3.1/go.mod h1:S5kwC7IuDcEr5VeXtGPRVZ5o/FdhcMlQz4IZQuw64xA=
+github.com/keyspot/gopackage v1.0.1 h1:psoChsJMWaLBWkmIqOfMxAe/V6hSXd8h/S9zWL1mzdk=
+github.com/keyspot/gopackage v1.0.1/go.mod h1:A6G+tT0YwZI/rletmspPA9JTVYyzfT/oDy0HfhxymdE=
