@@ -2,6 +2,8 @@
 
 version=$1
 
+rm -rf dist/
+
 git add .
 git commit -m "$version"
 git tag $version
