@@ -3,18 +3,9 @@ package main
 import (
 	"fmt"
 	"os"
-	"os/exec"
-	"strings"
 
 	"github.com/akamensky/argparse"
-	keyspot "github.com/keyspot/gopackage"
 )
-
-type command struct {
-	Name string
-	Help string
-	Run  func([]string)
-}
 
 var versionString string = "1.0.25"
 
@@ -24,8 +15,7 @@ func main() {
 
 	runCommand := parser.NewCommand("run", "Runs a command or program with environment variables from a given keyspot record.")
 
-	command := runCommand.String("c", "command", &argparse.Options{Required: true, Help: "Command to be run."})
-	accessKey := runCommand.String("k", "key", &argparse.Options{Required: false, Help: "Determines the record to be run by the access key provided."})
+	initializeRun(runCommand)
 
 	err := parser.Parse(os.Args)
 
@@ -39,20 +29,6 @@ func main() {
 	}
 
 	if runCommand.Happened() {
-
-		if *accessKey != "" {
-			keyspot.SetEnvironment(*accessKey)
-		}
-
-		commandArray := strings.Split(*command, " ")
-		cmd := exec.Command(commandArray[0], commandArray[1:]...)
-		cmd.Stdout = os.Stdout
-		cmd.Stderr = os.Stderr
-		err := cmd.Run()
-
-		if err != nil {
-			fmt.Println(err.Error())
-			return
-		}
+		executeRun()
 	}
 }
