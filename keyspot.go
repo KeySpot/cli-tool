@@ -16,7 +16,7 @@ type command struct {
 	Run  func([]string)
 }
 
-var versionString string = "1.0.21"
+var versionString string = "1.0.23"
 
 func main() {
 	parser := argparse.NewParser("keyspot", "Tool for interfacing with KeySpot.app. Primarily used for running programs with KeySpot records injected as environment variables.")
