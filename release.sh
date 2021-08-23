@@ -1,12 +1,20 @@
 #!/bin/bash
 
-version=$1
+if [ $# -eq 2 ]
+then
+    version=$1
+    token=$2
 
-git add .
-git commit -m "$version"
-git tag $version
-git push origin main
+    export GITHUB_TOKEN=$2
 
-goreleaser release
+    git add .
+    git commit -m "$version"
+    git tag $version
+    git push origin main
 
-rm -rf dist/
+    goreleaser release
+
+    rm -rf dist/
+else
+    echo arg1 is the version tag, arg2 is the github token
+fi
