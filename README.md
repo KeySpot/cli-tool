@@ -45,6 +45,7 @@ keyspot run -c "npm start" -k <record-access-key>
 ### run flags
 
 -c: Command to inject secrets into as environment variables
+
 -k: Access key of record to be used
 
 ## help
