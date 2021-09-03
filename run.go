@@ -1,38 +1,36 @@
-// +build !windows
-
 package main
 
 import (
-	"fmt"
-	"os"
-	"os/exec"
 	"strings"
 
-	"github.com/akamensky/argparse"
+	"github.com/jessevdk/go-flags"
 	keyspot "github.com/keyspot/gopackage"
 )
 
-var command *string
-var accessKey *string
-
-func initializeRun(runCommand *argparse.Command) {
-	command = runCommand.String("c", "command", &argparse.Options{Required: true, Help: "Command to be run."})
-	accessKey = runCommand.String("k", "key", &argparse.Options{Required: false, Help: "Determines the record to be run by the access key provided."})
+type RunCommand struct {
+	Key string `short:"k" long:"key" description:"Specify a record by access key to run the command with the values from the record as environment variables."`
 }
 
-func executeRun() {
-	if *accessKey != "" {
-		keyspot.SetEnvironment(*accessKey)
+func (x *RunCommand) Execute(args []string) error {
+	if x.Key != "" {
+		keyspot.SetEnvironment(x.Key)
 	}
 
-	commandArray := strings.Split(*command, " ")
-	cmd := exec.Command(commandArray[0], commandArray[1:]...)
-	cmd.Stdout = os.Stdout
-	cmd.Stderr = os.Stderr
-	err := cmd.Run()
-
-	if err != nil {
-		fmt.Println(err.Error())
-		return
+	if (len(args) == 0) {
+		return flags.ErrExpectedArgument
 	}
+
+	err := exec_command(strings.Join(args, " "))
+
+	return err
+}
+
+var runCommand RunCommand
+
+func init() {
+	parser.AddCommand(
+		"run",
+		"Run shell command",
+		"The run command will run a command in your current path.",
+		&runCommand)
 }
