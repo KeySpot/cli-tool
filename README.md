@@ -39,7 +39,7 @@ scoop install keyspot
 To inject a record into a process/command as environment variables, use "keyspot run".
 
 ```bash
-keyspot run -c "npm start" -k <record-access-key>
+keyspot run "npm start" -k <record-access-key>
 ```
 
 ### run flags
