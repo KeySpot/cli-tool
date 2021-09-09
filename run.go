@@ -63,12 +63,16 @@ func (x *RunCommand) Execute(args []string) error {
 	return err
 }
 
+func (x *RunCommand) Usage() string {
+	return "<COMMAND> [run-OPTIONS]"
+}
+
 var runCommand RunCommand
 
 func init() {
 	parser.AddCommand(
 		"run",
 		"Run shell command with record as environment variables",
-		"The run command will run a command your terminal has access to with environment variables injected from a KeySpot Record. The method for specifying which record is through the various options. If no options are given the command will be run without any injection.",
+		"The run command will run a command your terminal has access to with environment variables injected from a KeySpot Record. The method for specifying which record is through the various options. If no options are given, the command will be run without any injection.",
 		&runCommand)
 }
