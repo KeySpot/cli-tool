@@ -32,7 +32,7 @@ scoop bucket add keyspot https://github.com/keyspot/scoop-bucket
 scoop install keyspot
 ```
 
-# Usage
+# Commands
 
 ## run
 
@@ -47,6 +47,10 @@ keyspot run "npm start" -k <record-access-key>
 * -k: Access key of record to be used
 
 ## version
+
+```bash
+keyspot version
+```
 
 Prints the current installed version of KeySpot CLI Tool.
 
