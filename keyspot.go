@@ -6,10 +6,9 @@ import (
 	"github.com/jessevdk/go-flags"
 )
 
-var versionString string = "1.1.0"
+var versionString string = "1.1.1"
 
 var opts struct {
-	
 }
 
 var parser = flags.NewParser(&opts, flags.Default)
