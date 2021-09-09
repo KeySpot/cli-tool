@@ -77,6 +77,10 @@ func (x *ConfigureCommand) Execute(args []string) error {
 	return nil
 }
 
+func (x *ConfigureCommand) Usage() string {
+	return "<CLI-TOKEN>"
+}
+
 var configureCommand ConfigureCommand
 
 func init() {

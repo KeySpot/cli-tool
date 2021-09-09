@@ -44,7 +44,16 @@ keyspot run "npm start" -k <record-access-key>
 
 ### run flags
 
-* -k: Access key of record to be used
+* -k, --key: Access key of record to be used
+* -r, --record: Name of record to be used. Requires the cli tool to be configured to an account, see the configure command.
+
+## configure
+
+When given a cli token from the KeySpot website %s/account, running the configure command with the token will link the token's account to the keyspot cli tool. This allows a user to specify documents by name instead of just by access key, among other features.
+
+```bash
+keyspot configure <cli-token>
+```
 
 ## version
 
