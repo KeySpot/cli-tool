@@ -49,7 +49,7 @@ keyspot run "npm start" -k <record-access-key>
 
 ## configure
 
-When given a cli token from the KeySpot website %s/account, running the configure command with the token will link the token's account to the keyspot cli tool. This allows a user to specify documents by name instead of just by access key, among other features.
+When given a cli token from the KeySpot website https://keyspot.app/account, running the configure command with the token will link the token's account to the keyspot cli tool. This allows a user to specify documents by name instead of just by access key, among other features.
 
 ```bash
 keyspot configure <cli-token>
