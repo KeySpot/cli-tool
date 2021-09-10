@@ -20,6 +20,12 @@ func injectRecord(record *map[string]string) {
 }
 
 func recordCallback(recordName string) error {
+	configFilePath, err := getConfigFilePath()
+
+	if err != nil {
+		return err
+	}
+
 	token, err := getToken(configFilePath)
 
 	if err != nil {

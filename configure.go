@@ -12,6 +12,12 @@ type ConfigureCommand struct {
 }
 
 func writeConfigFile(path string, token string) error {
+	configFilePath, err := getConfigFilePath()
+
+	if err != nil {
+		return err
+	}
+
 	f, err := os.Create(configFilePath)
 
 	if err != nil {
@@ -66,6 +72,12 @@ func (x *ConfigureCommand) Execute(args []string) error {
 
 	if !accountValid {
 		return errors.New("Invalid account info in json web token")
+	}
+
+	configFilePath, err := getConfigFilePath()
+
+	if err != nil {
+		return err
 	}
 
 	err = writeConfigFile(configFilePath, token)
