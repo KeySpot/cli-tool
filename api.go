@@ -13,7 +13,6 @@ import (
 
 var websiteUrl string = "https://keyspot.app"
 var apiUrl string = "https://database-driver-ifhogzjzbq-uc.a.run.app"
-var configFilePath string = os.Getenv("HOME") + "/.keyspot"
 
 type JwtPayload struct {
 	Sub string
@@ -25,6 +24,16 @@ type JsonRecordDocument struct {
 	Name   string            `json:"name"`
 	Sub    string            `json:"sub"`
 	Record map[string]string `json:"record"`
+}
+
+func getConfigFilePath() (string, error) {
+	path, err := os.UserHomeDir()
+
+	if err != nil {
+		return "", err
+	}
+
+	return path + "/.keyspot", nil
 }
 
 func parseJwtPayload(token string) (*JwtPayload, error) {
