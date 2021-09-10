@@ -86,6 +86,8 @@ func (x *ConfigureCommand) Execute(args []string) error {
 		return err
 	}
 
+	fmt.Println("Account successfully linked")
+
 	return nil
 }
 
