@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"os"
 	"strings"
 
@@ -20,7 +21,7 @@ func injectRecord(record *map[string]string) {
 }
 
 func recordCallback(recordName string) error {
-	configFilePath, err := getConfigFilePath()
+	configFilePath, err := isConfigured()
 
 	if err != nil {
 		return err
@@ -29,7 +30,7 @@ func recordCallback(recordName string) error {
 	token, err := getToken(configFilePath)
 
 	if err != nil {
-		return err
+		return errors.New("You need to configure ")
 	}
 
 	payload, err := parseJwtPayload(token)
@@ -52,19 +53,27 @@ func recordCallback(recordName string) error {
 }
 
 func (x *RunCommand) Execute(args []string) error {
+	var err error
+
 	if x.Key != "" {
-		keyspot.SetEnvironment(x.Key)
+		err = keyspot.SetEnvironment(x.Key)
+		if err != nil {
+			return err
+		}
 	}
 
 	if x.Record != "" {
-		recordCallback(x.Record)
+		err = recordCallback(x.Record)
+		if err != nil {
+			return err
+		}
 	}
 
 	if len(args) == 0 {
 		return flags.ErrExpectedArgument
 	}
 
-	err := exec_command(strings.Join(args, " "))
+	err = exec_command(strings.Join(args, " "))
 
 	return err
 }
