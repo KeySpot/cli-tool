@@ -12,13 +12,8 @@ type ConfigureCommand struct {
 }
 
 func writeConfigFile(path string, token string) error {
-	configFilePath, err := getConfigFilePath()
 
-	if err != nil {
-		return err
-	}
-
-	f, err := os.Create(configFilePath)
+	f, err := os.Create(path)
 
 	if err != nil {
 		return err
@@ -32,7 +27,7 @@ func writeConfigFile(path string, token string) error {
 		return err
 	}
 
-	err = os.Chmod(configFilePath, 0600)
+	err = os.Chmod(path, 0600)
 
 	if err != nil {
 		return err

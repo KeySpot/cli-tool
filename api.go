@@ -2,6 +2,8 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -34,6 +36,22 @@ func getConfigFilePath() (string, error) {
 	}
 
 	return path + "/.keyspot", nil
+}
+
+func isConfigured() (string, error) {
+	path, err := getConfigFilePath()
+
+	if err != nil {
+		return "", err
+	}
+
+	_, err = os.Stat(path)
+
+	if os.IsNotExist(err) {
+		return "", errors.New(fmt.Sprintf("No .keyspot file detected. The configure command needs to be run with a cli token before you can use these options. This can be done by acquiring a token from %s/account and running:\n\t$ keyspot configure <cli-token>", websiteUrl))
+	}
+
+	return path, nil
 }
 
 func parseJwtPayload(token string) (*JwtPayload, error) {
