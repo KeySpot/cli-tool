@@ -45,9 +45,9 @@ func recordCallback(recordName string) error {
 		return err
 	}
 
-	record := recordFromJsonString(jsonString)
+	document := documentFromJsonString(jsonString)
 
-	injectRecord(record)
+	injectRecord(&document.Record)
 
 	return nil
 }
@@ -79,7 +79,7 @@ func (x *RunCommand) Execute(args []string) error {
 }
 
 func (x *RunCommand) Usage() string {
-	return "<COMMAND> [run-OPTIONS]"
+	return "<COMMAND> [run command options]"
 }
 
 var runCommand RunCommand

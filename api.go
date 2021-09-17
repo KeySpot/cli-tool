@@ -99,11 +99,19 @@ func apiGet(route string, token string) (string, error) {
 }
 
 func recordFromJsonString(jsonString string) *map[string]string {
+	record := map[string]string{}
+
+	json.Unmarshal([]byte(jsonString), &record)
+
+	return &record
+}
+
+func documentFromJsonString(jsonString string) *JsonRecordDocument {
 	document := JsonRecordDocument{}
 
 	json.Unmarshal([]byte(jsonString), &document)
 
-	return &document.Record
+	return &document
 }
 
 func getToken(tokenPath string) (string, error) {
@@ -114,4 +122,26 @@ func getToken(tokenPath string) (string, error) {
 	}
 
 	return string(buffer), nil
+}
+
+func getSubAndToken() (string, string, error) {
+	configFilePath, err := isConfigured()
+
+	if err != nil {
+		return "", "", err
+	}
+
+	token, err := getToken(configFilePath)
+
+	if err != nil {
+		return "", "", errors.New("You need to configure your CLI tool.")
+	}
+
+	payload, err := parseJwtPayload(token)
+
+	if err != nil {
+		return "", "", err
+	}
+
+	return payload.Sub, token, nil
 }
