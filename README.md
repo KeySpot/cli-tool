@@ -69,6 +69,14 @@ keyspot export <NEW-FILE-PATH> [export command options]
 * -k, --key: Access key of record to be used
 * -r, --record: Name of record to be used. Requires the cli tool to be configured to an account, see the configure command.
 
+## import
+
+Import a .env file into KeySpot. The FILE-PATH specified is the .env file you want to import while RECORD-NAME is the name of the record in KeySpot to create. If RECORD-NAME already exists in your account then the record will be overwritten. Requires your CLI tool to be configured.
+
+```bash
+keyspot import <FILE-PATH> <RECORD-NAME>
+```
+
 ## version
 
 ```bash
