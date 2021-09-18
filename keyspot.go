@@ -6,7 +6,7 @@ import (
 	"github.com/jessevdk/go-flags"
 )
 
-var versionString string = "1.2.0"
+var versionString string = "1.2.1"
 
 var opts struct {
 }
