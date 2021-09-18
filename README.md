@@ -58,10 +58,10 @@ keyspot configure <cli-token>
 ## export
 
 Export a record stored with KeySpot as a file following the .env file syntax. Use one of the options to
-specify which KeySpot record to export. <NEW-FILE-NAME> is the name of the new exported file.
+specify which KeySpot record to export. <NEW-FILE-PATH> is the name of the new exported file.
 
 ```bash
-keyspot export <NEW-FILE-NAME> [export command options]
+keyspot export <NEW-FILE-PATH> [export command options]
 ```
 
 ### export options

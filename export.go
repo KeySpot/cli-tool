@@ -81,7 +81,7 @@ func (x *ExportCommand) Execute(args []string) error {
 }
 
 func (x *ExportCommand) Usage() string {
-	return "<NEW-FILE-NAME> [export command options]"
+	return "<NEW-FILE-PATH> [export command options]"
 }
 
 var exportCommand ExportCommand
@@ -90,6 +90,6 @@ func init() {
 	parser.AddCommand(
 		"export",
 		"Export a record stored with KeySpot as a .env file.",
-		"Export a record stored with KeySpot as a file following the .env file syntax. Use one of the options to specify which KeySpot record to export. <NEW-FILE-NAME> is the name of the new exported file.",
+		"Export a record stored with KeySpot as a file following the .env file syntax. Use one of the options to specify which KeySpot record to export. <NEW-FILE-PATH> is the name of the new exported file.",
 		&exportCommand)
 }

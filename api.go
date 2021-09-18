@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -77,6 +78,38 @@ func apiGet(route string, token string) (string, error) {
 	}
 
 	req.Header.Add("Authorization", bearer)
+
+	client := &http.Client{
+		Timeout: time.Second * 10,
+	}
+	res, err := client.Do(req)
+
+	if err != nil {
+		return "", err
+	}
+
+	defer res.Body.Close()
+
+	body, err := ioutil.ReadAll(res.Body)
+
+	if err != nil {
+		return "", err
+	}
+
+	return string([]byte(body)), nil
+}
+
+func apiPut(route string, jsonString string, token string) (string, error) {
+	bearer := "Bearer " + token
+
+	req, err := http.NewRequest("PUT", apiUrl+route, bytes.NewBuffer([]byte(jsonString)))
+
+	if err != nil {
+		return "", err
+	}
+
+	req.Header.Add("Authorization", bearer)
+	req.Header.Add("Content-Type", "application/json")
 
 	client := &http.Client{
 		Timeout: time.Second * 10,
