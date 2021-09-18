@@ -42,7 +42,7 @@ To inject a record into a process/command as environment variables, use "keyspot
 keyspot run "npm start" -k <record-access-key>
 ```
 
-### run flags
+### run options
 
 * -k, --key: Access key of record to be used
 * -r, --record: Name of record to be used. Requires the cli tool to be configured to an account, see the configure command.
@@ -54,6 +54,20 @@ When given a cli token from the KeySpot website https://keyspot.app/account, run
 ```bash
 keyspot configure <cli-token>
 ```
+
+## export
+
+Export a record stored with KeySpot as a file following the .env file syntax. Use one of the options to
+specify which KeySpot record to export. <NEW-FILE-NAME> is the name of the new exported file.
+
+```bash
+keyspot export <NEW-FILE-NAME> [export command options]
+```
+
+### export options
+
+* -k, --key: Access key of record to be used
+* -r, --record: Name of record to be used. Requires the cli tool to be configured to an account, see the configure command.
 
 ## version
 
