@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"os"
 	"strings"
 
@@ -34,9 +33,7 @@ func importVars(path string, recordName string) error {
 
 	jsonString = jsonString[:len(jsonString)-1] + "}"
 
-	body, err := apiPut("/user-records/"+sub+"/"+recordName, jsonString, token)
-
-	fmt.Println(body)
+	_, err = apiPut("/user-records/"+sub+"/"+recordName, jsonString, token)
 
 	if err != nil {
 		return err
